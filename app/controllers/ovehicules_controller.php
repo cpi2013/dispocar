@@ -1,14 +1,16 @@
 <?php
+
+/************************************************************************* fonctions membres ****************************** */
 class OvehiculesController extends AppController {
 
 	var $name = 'Ovehicules';
 
-	function index() {
+	function membres_index() {
 		$this->Ovehicule->recursive = 0;
 		$this->set('ovehicules', $this->paginate());
 	}
 
-	function view($id = null) {
+	function membres_view($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid ovehicule', true));
 			$this->redirect(array('action' => 'index'));
@@ -16,7 +18,7 @@ class OvehiculesController extends AppController {
 		$this->set('ovehicule', $this->Ovehicule->read(null, $id));
 	}
 
-	function add() {
+	function membres_add() {
 		if (!empty($this->data)) {
 			$this->Ovehicule->create();
 			if ($this->Ovehicule->save($this->data)) {
@@ -26,11 +28,11 @@ class OvehiculesController extends AppController {
 				$this->Session->setFlash(__('The ovehicule could not be saved. Please, try again.', true));
 			}
 		}
-		$clients = $this->Ovehicule->Client->find('list');
-		$this->set(compact('clients'));
+		$parcs = $this->Ovehicule->Parc->find('list');
+		$this->set(compact('parcs'));
 	}
 
-	function edit($id = null) {
+	function membres_edit($id = null) {
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash(__('Invalid ovehicule', true));
 			$this->redirect(array('action' => 'index'));
@@ -50,7 +52,7 @@ class OvehiculesController extends AppController {
 		$this->set(compact('clients'));
 	}
 
-	function delete($id = null) {
+	function membres_delete($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid id for ovehicule', true));
 			$this->redirect(array('action'=>'index'));
@@ -62,4 +64,20 @@ class OvehiculesController extends AppController {
 		$this->Session->setFlash(__('Ovehicule was not deleted', true));
 		$this->redirect(array('action' => 'index'));
 	}
+	
+	/************************************************************************* fonctions admin ****************************** */
+	
+	function admin_index() {
+		$this->Ovehicule->recursive = 0;
+		$this->set('ovehicules', $this->paginate());
+	}
+	
+	function admin_view($id = null) {
+		if (!$id) {
+			$this->Session->setFlash(__('Invalid ovehicule', true));
+			$this->redirect(array('action' => 'index'));
+		}
+		$this->set('ovehicule', $this->Ovehicule->read(null, $id));
+	}
+
 }

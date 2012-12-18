@@ -2,13 +2,14 @@
 class ParcsController extends AppController {
 
 	var $name = 'Parcs';
-/*
-	function index() {
+/************************************************************************ fonctions membres****/
+
+	function membres_index() {
 		$this->Parc->recursive = 0;
 		$this->set('parcs', $this->paginate());
-	} */
+	} 
 
-	function view($id = null) {
+	function membres_view($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid parc', true));
 			$this->redirect(array('action' => 'index'));
@@ -16,54 +17,10 @@ class ParcsController extends AppController {
 		$this->set('parc', $this->Parc->read(null, $id));
 	}
 
-	function add() {
-		if (!empty($this->data)) {
-			$this->Parc->create();
-			if ($this->Parc->save($this->data)) {
-				$this->Session->setFlash(__('The parc has been saved', true));
-				$this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The parc could not be saved. Please, try again.', true));
-			}
-		}
-		$ovehicules = $this->Parc->Ovehicule->find('list');
-		$nvehicules = $this->Parc->Nvehicule->find('list');
-		$this->set(compact('ovehicules', 'nvehicules'));
-	}
+	
+	
+	/************************************************************************************** fonctions admin***********/
 
-	function edit($id = null) {
-		if (!$id && empty($this->data)) {
-			$this->Session->setFlash(__('Invalid parc', true));
-			$this->redirect(array('action' => 'index'));
-		}
-		if (!empty($this->data)) {
-			if ($this->Parc->save($this->data)) {
-				$this->Session->setFlash(__('The parc has been saved', true));
-				$this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The parc could not be saved. Please, try again.', true));
-			}
-		}
-		if (empty($this->data)) {
-			$this->data = $this->Parc->read(null, $id);
-		}
-		$ovehicules = $this->Parc->Ovehicule->find('list');
-		$nvehicules = $this->Parc->Nvehicule->find('list');
-		$this->set(compact('ovehicules', 'nvehicules'));
-	}
-
-	function delete($id = null) {
-		if (!$id) {
-			$this->Session->setFlash(__('Invalid id for parc', true));
-			$this->redirect(array('action'=>'index'));
-		}
-		if ($this->Parc->delete($id)) {
-			$this->Session->setFlash(__('Parc deleted', true));
-			$this->redirect(array('action'=>'index'));
-		}
-		$this->Session->setFlash(__('Parc was not deleted', true));
-		$this->redirect(array('action' => 'index'));
-	}
 	function admin_index() {
 		$this->Parc->recursive = 0;
 		$this->set('parcs', $this->paginate());

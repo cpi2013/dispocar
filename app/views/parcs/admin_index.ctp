@@ -6,8 +6,6 @@
 			<th><?php echo $this->Paginator->sort('numeroparc');?></th>
 			<th><?php echo $this->Paginator->sort('ville');?></th>
 			<th><?php echo $this->Paginator->sort('tel');?></th>
-			<th><?php echo $this->Paginator->sort('ovehicules_id');?></th>
-			<th><?php echo $this->Paginator->sort('nvehicules_id');?></th>
 			<th class="actions"><?php __('Actions');?></th>
 	</tr>
 	<?php
@@ -23,12 +21,8 @@
 		<td><?php echo $parc['Parc']['numeroparc']; ?>&nbsp;</td>
 		<td><?php echo $parc['Parc']['ville']; ?>&nbsp;</td>
 		<td><?php echo $parc['Parc']['tel']; ?>&nbsp;</td>
-		<td>
-			<?php echo $this->Html->link($parc['Ovehicules']['id'], array('controller' => 'ovehicules', 'action' => 'view', $parc['Ovehicules']['id'])); ?>
-		</td>
-		<td>
-			<?php echo $this->Html->link($parc['Nvehicules']['id'], array('controller' => 'nvehicules', 'action' => 'view', $parc['Nvehicules']['id'])); ?>
-		</td>
+		
+		
 		<td class="actions">
 			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $parc['Parc']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $parc['Parc']['id'])); ?>

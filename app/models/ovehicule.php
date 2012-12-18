@@ -2,7 +2,7 @@
 class Ovehicule extends AppModel {
 	var $name = 'Ovehicule';
 	var $validate = array(
-		'clients_id' => array(
+		'parcs_id' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
 				//'message' => 'Your custom message here',
@@ -16,12 +16,29 @@ class Ovehicule extends AppModel {
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
 	var $belongsTo = array(
-		'Clients' => array(
-			'className' => 'Clients',
-			'foreignKey' => 'clients_id',
+		'Parc' => array(
+			'className' => 'Parc',
+			'foreignKey' => 'parcs_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
 		)
 	);
+	
+	var $actsAs = array(
+    'MeioUpload' => array(
+        'filename' => array(
+            'dir' => 'img/lesimages/ovehicules/',
+            'create_directory' => true,
+            'allowed_mime' => array('image/jpeg', 'image/pjpeg', 'image/png'),
+            'allowed_ext' => array('.jpg', '.jpeg', '.png'),
+            'thumbsizes' => array(
+                'normal' => array('width'=>200, 'height'=>200),
+            ),
+			
+            'default' => 'default.jpg',
+        )
+    )
+); 
+	
 }
