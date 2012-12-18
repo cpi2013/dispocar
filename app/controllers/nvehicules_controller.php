@@ -2,13 +2,14 @@
 class NvehiculesController extends AppController {
 
 	var $name = 'Nvehicules';
+/************************************************************************ fonctions admin****/
 
-	function index() {
+	function admin_index() {
 		$this->Nvehicule->recursive = 0;
 		$this->set('nvehicules', $this->paginate());
 	}
 
-	function view($id = null) {
+	function admin_view($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid nvehicule', true));
 			$this->redirect(array('action' => 'index'));
@@ -16,7 +17,23 @@ class NvehiculesController extends AppController {
 		$this->set('nvehicule', $this->Nvehicule->read(null, $id));
 	}
 
-	function add() {
+	
+/****************************************************************************************** fonctions membres****/
+	
+    function membres_index() {
+		$this->Nvehicule->recursive = 0;
+		$this->set('nvehicules', $this->paginate());
+	}
+	
+	function membres_view($id = null) {
+		if (!$id) {
+			$this->Session->setFlash(__('Invalid nvehicule', true));
+			$this->redirect(array('action' => 'index'));
+		}
+		$this->set('nvehicule', $this->Nvehicule->read(null, $id));
+	}
+	
+	function membres_add() {
 		if (!empty($this->data)) {
 			$this->Nvehicule->create();
 			if ($this->Nvehicule->save($this->data)) {
@@ -26,14 +43,17 @@ class NvehiculesController extends AppController {
 				$this->Session->setFlash(__('The nvehicule could not be saved. Please, try again.', true));
 			}
 		}
-		$clients = $this->Nvehicule->Client->find('list');
-		$this->set(compact('clients'));
-	}
+		$parcs = $this->Nvehicule->Parc->find('list');
+		$this->set(compact('parcs'));
 
-	function edit($id = null) {
+	}
+	
+	function membres_edit($id = null) {
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash(__('Invalid nvehicule', true));
 			$this->redirect(array('action' => 'index'));
+			$this->Nvehicule->save($this->data);
+
 		}
 		if (!empty($this->data)) {
 			if ($this->Nvehicule->save($this->data)) {
@@ -46,11 +66,11 @@ class NvehiculesController extends AppController {
 		if (empty($this->data)) {
 			$this->data = $this->Nvehicule->read(null, $id);
 		}
-		$clients = $this->Nvehicule->Client->find('list');
-		$this->set(compact('clients'));
+		$parcs = $this->Nvehicule->Parc->find('list');
+		$this->set(compact('parcs'));
 	}
-
-	function delete($id = null) {
+	
+		function membres_delete($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid id for nvehicule', true));
 			$this->redirect(array('action'=>'index'));
@@ -62,4 +82,9 @@ class NvehiculesController extends AppController {
 		$this->Session->setFlash(__('Nvehicule was not deleted', true));
 		$this->redirect(array('action' => 'index'));
 	}
+	
+	
+	
+	
+
 }
