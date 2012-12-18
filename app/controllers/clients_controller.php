@@ -1,14 +1,20 @@
 <?php
+
+//controleur du client qui achète une nouvelle voiture
+
 class ClientsController extends AppController {
 
 	var $name = 'Clients';
 
-	function index() {
+	
+/****************************************************************************************** fonctions membres****/
+
+	function membres_index() {
 		$this->Client->recursive = 0;
 		$this->set('clients', $this->paginate());
 	}
 
-	function view($id = null) {
+	function membres_view($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid client', true));
 			$this->redirect(array('action' => 'index'));
@@ -16,7 +22,7 @@ class ClientsController extends AppController {
 		$this->set('client', $this->Client->read(null, $id));
 	}
 
-	function add() {
+	function membres_add() {
 		if (!empty($this->data)) {
 			$this->Client->create();
 			if ($this->Client->save($this->data)) {
@@ -26,9 +32,13 @@ class ClientsController extends AppController {
 				$this->Session->setFlash(__('The client could not be saved. Please, try again.', true));
 			}
 		}
+		$nvehicules = $this->Client->Nvehicule->find('list');
+		$this->set(compact('nvehicules'));
+		
+		
 	}
 
-	function edit($id = null) {
+	function membres_edit($id = null) {
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash(__('Invalid client', true));
 			$this->redirect(array('action' => 'index'));
@@ -46,7 +56,7 @@ class ClientsController extends AppController {
 		}
 	}
 
-	function delete($id = null) {
+	function membres_delete($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid id for client', true));
 			$this->redirect(array('action'=>'index'));
@@ -58,11 +68,14 @@ class ClientsController extends AppController {
 		$this->Session->setFlash(__('Client was not deleted', true));
 		$this->redirect(array('action' => 'index'));
 	}
+	
+	/****************************************************************************************** fonctions admin****/
+	
 	function admin_index() {
 		$this->Client->recursive = 0;
 		$this->set('clients', $this->paginate());
 	}
-
+	
 	function admin_view($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid client', true));
@@ -71,46 +84,4 @@ class ClientsController extends AppController {
 		$this->set('client', $this->Client->read(null, $id));
 	}
 
-	function admin_add() {
-		if (!empty($this->data)) {
-			$this->Client->create();
-			if ($this->Client->save($this->data)) {
-				$this->Session->setFlash(__('The client has been saved', true));
-				$this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The client could not be saved. Please, try again.', true));
-			}
-		}
-	}
-
-	function admin_edit($id = null) {
-		if (!$id && empty($this->data)) {
-			$this->Session->setFlash(__('Invalid client', true));
-			$this->redirect(array('action' => 'index'));
-		}
-		if (!empty($this->data)) {
-			if ($this->Client->save($this->data)) {
-				$this->Session->setFlash(__('The client has been saved', true));
-				$this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The client could not be saved. Please, try again.', true));
-			}
-		}
-		if (empty($this->data)) {
-			$this->data = $this->Client->read(null, $id);
-		}
-	}
-
-	function admin_delete($id = null) {
-		if (!$id) {
-			$this->Session->setFlash(__('Invalid id for client', true));
-			$this->redirect(array('action'=>'index'));
-		}
-		if ($this->Client->delete($id)) {
-			$this->Session->setFlash(__('Client deleted', true));
-			$this->redirect(array('action'=>'index'));
-		}
-		$this->Session->setFlash(__('Client was not deleted', true));
-		$this->redirect(array('action' => 'index'));
-	}
 }
