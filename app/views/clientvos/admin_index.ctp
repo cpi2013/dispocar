@@ -1,5 +1,5 @@
-<div class="clients index">
-	<h2><?php __('Clientvos');?></h2>
+﻿<div class="clients index">
+	<h2><?php __('Clients véhicules occasions');?></h2>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort('id');?></th>
@@ -8,6 +8,7 @@
 			<th><?php echo $this->Paginator->sort('raisonsociale');?></th>
 			<th><?php echo $this->Paginator->sort('ville');?></th>
 			<th><?php echo $this->Paginator->sort('tel');?></th>
+			<th><?php echo $this->Paginator->sort('Négociations');?></th>
 			<th class="actions"><?php __('Actions');?></th>
 	</tr>
 	<?php
@@ -25,8 +26,9 @@
 		<td><?php echo $clientvo['Clientvo']['raisonsociale']; ?>&nbsp;</td>
 		<td><?php echo $clientvo['Clientvo']['ville']; ?>&nbsp;</td>
 		<td><?php echo $clientvo['Clientvo']['tel']; ?>&nbsp;</td>
+	    <td><?php echo $clientvo['Clientvo']['nego']=='0'?'En cours':'clôturées'; ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $clientvo['Clientvo']['id'])); ?>
+			<?php echo $this->Html->link(__('Voir', true), array('action' => 'view', $clientvo['Clientvo']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
