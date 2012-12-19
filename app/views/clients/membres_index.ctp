@@ -7,7 +7,9 @@
 			<th><?php echo $this->Paginator->sort('prenom');?></th>
 			<th><?php echo $this->Paginator->sort('ville');?></th>
 			<th><?php echo $this->Paginator->sort('tel');?></th>
+			<th><?php echo $this->Paginator->sort('Négociations');?></th>
 			<th><?php echo $this->Paginator->sort('Véhicule');?></th>
+			
 
 
 			<th class="actions"><?php __('');?></th>
@@ -26,6 +28,7 @@
 		<td><?php echo $client['Client']['prenom']; ?>&nbsp;</td>
 		<td><?php echo $client['Client']['ville']; ?>&nbsp;</td>
 		<td><?php echo $client['Client']['tel']; ?>&nbsp;</td>
+		<td><?php echo $client['Client']['nego']=='0'?'En cours':'clôturées'; ?>&nbsp;</td>
 		<td>
 			<?php echo $this->Html->link($client['Nvehicule']['id'], array('controller' => 'Nvehicules', 'action' => 'view', $client['Nvehicule']['id'])); ?>
 		</td>
@@ -34,9 +37,9 @@
 		
 		
 		<td class="actions">
-			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $client['Client']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $client['Client']['id'])); ?>
-			<?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $client['Client']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $client['Client']['id'])); ?>
+			<?php echo $this->Html->link(__('Voir', true), array('action' => 'view', $client['Client']['id'])); ?>
+			<?php echo $this->Html->link(__('Editer', true), array('action' => 'edit', $client['Client']['id'])); ?>
+			<?php echo $this->Html->link(__('Supprimer', true), array('action' => 'delete', $client['Client']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $client['Client']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -58,6 +61,6 @@
 <div class="actions">
 	<h3><?php __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('New Client', true), array('action' => 'add')); ?></li>
+		<li><?php echo $this->Html->link(__('Nouveau client', true), array('action' => 'add')); ?></li>
 	</ul>
 </div>

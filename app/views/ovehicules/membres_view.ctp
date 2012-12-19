@@ -97,6 +97,23 @@
 			&nbsp;
 		</dd>
 		
+		<h3>Les différents statuts </h3>
+		
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Statut'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+            <?php echo $ovehicule['Ovehicule']['envente']=='0'?'En vente':'Hors vente'; ?>			&nbsp;
+		</dd>
+		
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Etat de transfert '); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+		<td> <?php echo $ovehicule['Ovehicule']['entransfert']=='0'?'Hors transfert':'En transfert'; ?>&nbsp;</td>
+		</dd>
+		
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Disponibilité'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+            <?php echo $ovehicule['Ovehicule']['vendu']=='0'?'Oui':'Vente close'; ?> &nbsp;
+		</dd>
+		
 	</dl>
 </div>
 <div class="actions">

@@ -1,14 +1,18 @@
-<div class="clients index">
-	<h2><?php __('Clients');?></h2>
+﻿<div class="clients index">
+	<h2><?php __('Gestion des clients | véhicules neufs');?></h2>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort('id');?></th>
 			<th><?php echo $this->Paginator->sort('nom');?></th>
 			<th><?php echo $this->Paginator->sort('prenom');?></th>
-			<th><?php echo $this->Paginator->sort('raisonsociale');?></th>
 			<th><?php echo $this->Paginator->sort('ville');?></th>
 			<th><?php echo $this->Paginator->sort('tel');?></th>
-			<th class="actions"><?php __('Actions');?></th>
+			<th><?php echo $this->Paginator->sort('Négociations');?></th>
+			<th><?php echo $this->Paginator->sort('Véhicule');?></th>
+			
+
+
+			<th class="actions"><?php __('');?></th>
 	</tr>
 	<?php
 	$i = 0;
@@ -22,11 +26,18 @@
 		<td><?php echo $client['Client']['id']; ?>&nbsp;</td>
 		<td><?php echo $client['Client']['nom']; ?>&nbsp;</td>
 		<td><?php echo $client['Client']['prenom']; ?>&nbsp;</td>
-		<td><?php echo $client['Client']['raisonsociale']; ?>&nbsp;</td>
 		<td><?php echo $client['Client']['ville']; ?>&nbsp;</td>
 		<td><?php echo $client['Client']['tel']; ?>&nbsp;</td>
+		<td><?php echo $client['Client']['nego']=='0'?'En cours':'clôturées'; ?>&nbsp;</td>
+		<td>
+			<?php echo $this->Html->link($client['Nvehicule']['id'], array('controller' => 'Nvehicules', 'action' => 'view', $client['Nvehicule']['id'])); ?>
+		</td>
+		
+		
+		
+		
 		<td class="actions">
-			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $client['Client']['id'])); ?>
+			<?php echo $this->Html->link(__('Voir', true), array('action' => 'view', $client['Client']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>

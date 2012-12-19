@@ -48,8 +48,8 @@ class OvehiculesController extends AppController {
 		if (empty($this->data)) {
 			$this->data = $this->Ovehicule->read(null, $id);
 		}
-		$clients = $this->Ovehicule->Client->find('list');
-		$this->set(compact('clients'));
+		$parcs = $this->Ovehicule->Parc->find('list');
+		$this->set(compact('parcs'));
 	}
 
 	function membres_delete($id = null) {
