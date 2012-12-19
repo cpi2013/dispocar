@@ -1,4 +1,4 @@
-<div class="clientvos view">
+﻿<div class="clientvos view">
 <h2><?php  __('Clientvo');?></h2>
 	<dl><?php $i = 0; $class = ' class="altrow"';?>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Id'); ?></dt>
@@ -6,11 +6,7 @@
 			<?php echo $clientvo['Clientvo']['id']; ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Numeroclient'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $clientvo['Clientvo']['numeroclient']; ?>
-			&nbsp;
-		</dd>
+		
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Nom'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $clientvo['Clientvo']['nom']; ?>
@@ -36,14 +32,18 @@
 			<?php echo $clientvo['Clientvo']['tel']; ?>
 			&nbsp;
 		</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Négociations '); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+		<td> <?php echo $clientvo['Clientvo']['nego']=='0'?'En cours':'clôturées'; ?>&nbsp;</td>
+		</dd>
 	</dl>
 </div>
 <div class="actions">
 	<h3><?php __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('Edit Clientvo', true), array('action' => 'edit', $clientvo['Clientvo']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('Delete Clientvo', true), array('action' => 'delete', $clientvo['Clientvo']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $clientvo['Clientvo']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('List Clientvos', true), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Clientvo', true), array('action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('Editer client', true), array('action' => 'edit', $clientvo['Clientvo']['id'])); ?> </li>
+		<li><?php echo $this->Html->link(__('Supprimer client', true), array('action' => 'delete', $clientvo['Clientvo']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $clientvo['Clientvo']['id'])); ?> </li>
+		<li><?php echo $this->Html->link(__('Liste clients', true), array('action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('Nouveau client', true), array('action' => 'add')); ?> </li>
 	</ul>
 </div>

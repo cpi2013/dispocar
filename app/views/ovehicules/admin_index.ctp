@@ -8,8 +8,11 @@
 			<th><?php echo $this->Paginator->sort('motorisation');?></th>
 			<th><?php echo $this->Paginator->sort('kilometrage');?></th>
 			<th><?php echo $this->Paginator->sort('circulation');?></th>
-			<th><?php echo $this->Paginator->sort('image');?></th>
 			<th><?php echo $this->Paginator->sort('prix');?></th>
+			<th><?php echo $this->Paginator->sort('Statut');?></th>
+			<th><?php echo $this->Paginator->sort('Etat');?></th>
+			<th><?php echo $this->Paginator->sort('');?></th>
+			<th><?php echo $this->Paginator->sort('image');?></th>
 			<th><?php echo $this->Paginator->sort('parc');?></th>
 
 			<th class="actions"><?php __('');?></th>
@@ -29,7 +32,12 @@
 		<td><?php echo $ovehicule['Ovehicule']['motorisation']; ?>&nbsp;</td>
 		<td><?php echo $ovehicule['Ovehicule']['kilometrage']; ?>&nbsp;</td>
 		<td><?php echo $ovehicule['Ovehicule']['circulation']; ?>&nbsp;</td>
-		  <td><?php
+		<td><?php echo $ovehicule['Ovehicule']['prix']; ?>&nbsp;</td>
+		<td><?php echo $ovehicule['Ovehicule']['envente']=='0'?'En vente':'Hors vente'; ?>&nbsp;</td>
+		<td><?php echo $ovehicule['Ovehicule']['entransfert']=='0'?'Hors transfert':'En transfert'; ?>&nbsp;</td>
+		<td><?php echo $ovehicule['Ovehicule']['vendu']=='0'?'':'vendu'; ?>&nbsp;</td>
+
+		<td><?php
 		echo $this->Html->link(
 		$this->Html->image('lesimages/ovehicules/'.$ovehicule['Ovehicule']['filename'], array('width'=>'90','height'=>'68','alt'=>'photo', 'border' => '0')),
 		array('action' => 'view', $ovehicule['Ovehicule']['id']),
@@ -37,8 +45,7 @@
 				);
 		?>&nbsp;	
 		</td>
-
-		<td><?php echo $ovehicule['Ovehicule']['prix']; ?>&nbsp;</td>
+		
 		<td>
 			<?php echo $this->Html->link($ovehicule['Parc']['id'], array('controller' => 'parcs', 'action' => 'view', $ovehicule['Parc']['id'])); ?>
 		</td>
@@ -66,7 +73,7 @@
 	<h3><?php __('Actions'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('Liste clients', true), array('controller' => 'clients', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('Accueil', true), array('controller' => 'users', 'action' => 'home')); ?> </li>
+		<li><?php echo $this->Html->link(__('Accueil', true), array('controller' => 'members', 'action' => 'home')); ?> </li>
 
 	</ul>
 </div>

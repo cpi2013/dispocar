@@ -3,7 +3,7 @@
 	<fieldset>
 		<legend><?php __('Nouveau véhicule'); ?></legend>
 	<?php
-		echo $this->Form->input('parcs_id');
+		echo $this->Form->input('parcs_id', array('label'=>'Id du parc auquel appartient le véhicule '));
 		echo $this->Form->input('marque');
 		echo $this->Form->input('annee');
 		echo $this->Form->input('model');
@@ -18,7 +18,10 @@
 		echo $this->Form->input('kilometrage');
 		echo $this->Form->input('infoptions');
 		echo $this->Form->input('commentaire');
-		echo $form->input('filename', array('type' => 'file'));
+		echo $form->input('filename', array('type' => 'file','label'=>'Inclure une image'));
+		echo $this->Form->input('envente', array('label'=>'Hors vente '));
+		echo $this->Form->input('entransfert', array('label'=>'En transfert '));
+		echo $this->Form->input('vendu', array('label'=>'Vente close '));
 
 	?>
 

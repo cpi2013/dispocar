@@ -1,4 +1,4 @@
-<div class="clients view">
+﻿<div class="clients view">
 <h2><?php  __('Client');?></h2>
 	<dl><?php $i = 0; $class = ' class="altrow"';?>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Id'); ?></dt>
@@ -31,6 +31,19 @@
 			<?php echo $client['Client']['tel']; ?>
 			&nbsp;
 		</dd>
+		
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Négociations '); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+		<td> <?php echo $client['Client']['nego']=='0'?'En cours':'clôturées'; ?>&nbsp;</td>
+		</dd>
+		
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Commentaire'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $client['Client']['note']; ?>
+			&nbsp;
+		</dd>
+		
+		
 	</dl>
 </div>
 <div class="actions">
